@@ -14,24 +14,6 @@ const searchTracks = asyncHandler(async (req, res) => {
     }
 })
 
-const detailsTracks = asyncHandler(async (req, res) => {
-    try {
-        const trackId = req.params.id
-        const track = await Track.findById(trackId)
-        if (!track) {
-            res.status(404)
-            throw new Error("Track not found")
-        }
-        const response = new AppResponse("Success", track);
-        return res.status(200).json(response);
-    } catch (error) {
-        res.status(500)
-        throw new Error("Internal Server error")
-    }
-
-})
-
 module.exports = {
     searchTracks,
-    detailsTracks
 }
